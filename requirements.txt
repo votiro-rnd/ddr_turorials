@@ -1,0 +1,10 @@
+# Core clients (classification + PII)
+requests>=2.31,<3.0
+
+# Used by the content classification tutorial (PDF parsing)
+PyPDF2>=3.0,<4.0
+
+# Notebook / interactive use
+jupyter>=1.0,<2.0
+ipykernel>=6.29,<7.0
+ipython>=8.0,<9.0   # explicit, though pulled via jupyter
