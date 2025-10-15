@@ -34,7 +34,6 @@ export AUTH_KEY="your-api-key"    # On Windows: set AUTH_KEY="your-api-key"
 
 We will use this key in the notebooks.
 
----
 
 3. **Launch the notebook**
 > 💡 *Tip:* Make sure to launch jupyter from you venv ONLY after setting your AUTH_KEY as an ENV VAR (As described above)
