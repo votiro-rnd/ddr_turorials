@@ -10,7 +10,7 @@ This repository includes two hands-on tutorials:
 
 1. **Clone and setup the repository**
    ```bash
-   git clone https://github.com/aviavi2099/ddr_tutorials.git  
+   git clone https://github.com/votiro-rnd/ddr_turorials.git  
    cd ddr_tutorials
    python -m venv venv   # recommended: py3.10 and higher
    source venv/bin/activate   # On Windows: venv\Scripts\activate
