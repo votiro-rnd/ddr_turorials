@@ -308,7 +308,7 @@ class ContentClassificationClient:
 
     def delete_category_file(self, category_file_id: str) -> Any:
         params = {"category_file_id": category_file_id}
-        return self._request("POST", "/management/delete_category_file", params=params)
+        return self._request("DELETE", "/management/delete_category_file", params=params)
 
     def update_category_file(
         self,
