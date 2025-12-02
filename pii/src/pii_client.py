@@ -411,22 +411,32 @@ class PiiClient:
         """
         return self._request("GET", "/api/v1/thresholds")
 
-    def post_thresholds(self, *, tenant_id: Optional[str], thresholds: Dict[int, float]) -> Any:
+    def post_thresholds(self, *, thresholds: Dict[int, float]) -> Any:
         """
         POST /api/v1/thresholds
-        Payload must be TenantThresholdConfigurationDto:
-          {
-            "tenantId": "<uuid|null>",
-            "thresholds": [{"label": <int>, "minimalConfidence": <float>}...]
-          }
-        The API expects enum *integers* for label IDs (see ProtectedDataLabel).
+    
+        The API expects a raw JSON array of threshold objects:
+    
+            [
+              {"label": <int>, "minimalConfidence": <float>},
+              ...
+            ]
+    
+        - `label` must be an enum integer.
+        - `minimalConfidence` is a float 0–1.
+        - Tenant identification is derived from the Bearer token; no tenantId
+          should be sent in the payload.
         """
-        body = {
-            "tenantId": tenant_id,
-            "thresholds": [{"label": int(k), "minimalConfidence": float(v)} for k, v in thresholds.items()],
-        }
-        headers = {"Content-Type": "application/json"}
+    
+        body = [
+            {"label": int(k), "minimalConfidence": float(v)}
+            for k, v in thresholds.items()
+        ]
+    
+        headers = {"Content-Type": "application/json-patch+json"}
+    
         return self._request("POST", "/api/v1/thresholds", headers=headers, json_body=body)
+
 
     
     # Utility: convert label ID (int) to label name string
