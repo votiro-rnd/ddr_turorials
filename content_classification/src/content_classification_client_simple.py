@@ -149,7 +149,7 @@ class ContentClassificationClient:
         if number_of_results is not None:
             params["number_of_results"] = int(number_of_results)
         if force_refresh is not None:
-            params["force_refresh"] = "true" if force_refresh else "false"
+            params["force_refresh"] = "true" if force_refresh in {'true', 'True', True} else "false"
 
         headers = {"Content-Type": "application/json", "Accept": "application/json"}
         if tenant_id:
@@ -178,7 +178,7 @@ class ContentClassificationClient:
         if number_of_results is not None:
             params["number_of_results"] = int(number_of_results)
         if force_refresh is not None:
-            params["force_refresh"] = "true" if force_refresh else "false"
+            params["force_refresh"] = "true" if force_refresh in {'true', 'True', True} else "false"
 
         files_payload: Dict[str, Tuple[str, Any]] = {}
         if isinstance(file, (str, Path)):
@@ -241,7 +241,7 @@ class ContentClassificationClient:
         if approved_only_filter is not None:
             params["approved_only_filter"] = "true" if approved_only_filter else "false"
         if force_refresh is not None:
-            params["force_refresh"] = "true" if force_refresh else "false"
+            params["force_refresh"] = "true" if force_refresh in {'true', 'True', True} else "false"
         return self._request("GET", "/management/get_categories", params=params)
 
     def add_categories_from_folders(self, categories_folders_root: str, *, is_approved: Optional[bool] = None, tenant_id: Optional[str] = None) -> Any:
