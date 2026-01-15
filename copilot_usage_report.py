@@ -153,14 +153,14 @@ class CopilotUsageReporter:
                     try:
                         created_dt = datetime.fromisoformat(created_at.replace('Z', '+00:00'))
                         created_at = created_dt.strftime('%Y-%m-%d %H:%M:%S')
-                    except:
+                    except (ValueError, AttributeError):
                         pass
                 
                 if last_activity and last_activity != 'Never':
                     try:
                         activity_dt = datetime.fromisoformat(last_activity.replace('Z', '+00:00'))
                         last_activity = activity_dt.strftime('%Y-%m-%d %H:%M:%S')
-                    except:
+                    except (ValueError, AttributeError):
                         pass
                 
                 print(f"{login:<30} {created_at:<25} {last_activity:<25}")
