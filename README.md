@@ -4,6 +4,37 @@ This repository includes two hands-on tutorials:
 - **Content Classification** – demonstrating text and PDF categorization using the `ContentClassificationClient`.
 - **PII Detection & Masking** – demonstrating detection, masking, and threshold management using the `PiiClient`.
 
+## 📊 GitHub Copilot Usage Report Tool
+
+This repository also includes a tool to generate GitHub Copilot usage reports for organization owners.
+
+### Quick Start for Copilot Usage Report
+
+```bash
+# Set your GitHub credentials
+export GITHUB_ORG="your-organization-name"
+export GITHUB_TOKEN="your-github-token"
+
+# Run the usage report
+python copilot_usage_report.py
+
+# Or with command-line arguments
+python copilot_usage_report.py --org your-org-name --token your-github-token
+
+# Export to JSON file
+python copilot_usage_report.py --export-json
+```
+
+**Required Token Permissions:**
+- `manage_billing:copilot` - For accessing Copilot billing and usage data
+- `read:org` - For reading organization information
+
+**To create a token:**
+1. Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
+2. Click "Generate new token (classic)"
+3. Select the required scopes: `manage_billing:copilot` and `read:org`
+4. Generate and copy the token
+
 ---
 
 ## 🚀 Getting Started (Quick Summary)
