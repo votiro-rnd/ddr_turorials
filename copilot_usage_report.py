@@ -115,6 +115,22 @@ class CopilotUsageReporter:
         except requests.exceptions.RequestException:
             return None
     
+    def _parse_github_timestamp(self, timestamp_str):
+        """
+        Parse GitHub timestamp and format it for display.
+        
+        Args:
+            timestamp_str (str): ISO 8601 timestamp from GitHub API
+            
+        Returns:
+            str: Formatted timestamp or original string if parsing fails
+        """
+        try:
+            dt = datetime.fromisoformat(timestamp_str.replace('Z', '+00:00'))
+            return dt.strftime('%Y-%m-%d %H:%M:%S')
+        except (ValueError, AttributeError):
+            return timestamp_str
+    
     def format_seat_report(self, seats_data):
         """
         Format seat assignment data into a readable report.
@@ -150,18 +166,10 @@ class CopilotUsageReporter:
                 
                 # Format dates
                 if created_at != 'N/A':
-                    try:
-                        created_dt = datetime.fromisoformat(created_at.replace('Z', '+00:00'))
-                        created_at = created_dt.strftime('%Y-%m-%d %H:%M:%S')
-                    except (ValueError, AttributeError):
-                        pass
+                    created_at = self._parse_github_timestamp(created_at)
                 
                 if last_activity and last_activity != 'Never':
-                    try:
-                        activity_dt = datetime.fromisoformat(last_activity.replace('Z', '+00:00'))
-                        last_activity = activity_dt.strftime('%Y-%m-%d %H:%M:%S')
-                    except (ValueError, AttributeError):
-                        pass
+                    last_activity = self._parse_github_timestamp(last_activity)
                 
                 print(f"{login:<30} {created_at:<25} {last_activity:<25}")
         
