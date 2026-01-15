@@ -235,7 +235,7 @@ class CopilotUsageReporter:
             with open(filename, 'w') as f:
                 json.dump(report, f, indent=2)
             print(f"\nReport exported to: {filename}")
-        except Exception as e:
+        except (OSError, IOError, PermissionError) as e:
             print(f"Error exporting report: {str(e)}")
     
     def generate_report(self, export_json=False):

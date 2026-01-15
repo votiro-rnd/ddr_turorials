@@ -24,15 +24,15 @@ export GITHUB_ORG="your-organization-name"
 export GITHUB_TOKEN="your-github-token"
 
 # Run the usage report
-python copilot_usage_report.py
+python3 copilot_usage_report.py
 
 # Export to JSON file
-python copilot_usage_report.py --export-json
+python3 copilot_usage_report.py --export-json
 ```
 
 **Option 2: Using command-line arguments**
 ```bash
-python copilot_usage_report.py --org your-org-name --token your-github-token
+python3 copilot_usage_report.py --org your-org-name --token your-github-token
 ```
 
 **Option 3: Using the example script**

@@ -16,10 +16,10 @@ if [ $# -eq 2 ]; then
     # Arguments provided
     ORG_NAME=$1
     GITHUB_TOKEN=$2
-    python copilot_usage_report.py --org "$ORG_NAME" --token "$GITHUB_TOKEN" --export-json
+    python3 copilot_usage_report.py --org "$ORG_NAME" --token "$GITHUB_TOKEN" --export-json
 elif [ -n "$GITHUB_ORG" ] && [ -n "$GITHUB_TOKEN" ]; then
     # Environment variables set
-    python copilot_usage_report.py --export-json
+    python3 copilot_usage_report.py --export-json
 else
     echo "Error: Please provide organization name and GitHub token"
     echo ""
